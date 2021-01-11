@@ -21,6 +21,7 @@ $(function () {
             $this = $("#sendMessageButton");
             $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
             $.ajax({
+                // The contact_me.php file was renamed in this solution to contact_me.txt for NOW as we want to find a JavaScript method for Contact Me submission
                 url: "/assets/mail/contact_me.php",
                 type: "POST",
                 data: {
