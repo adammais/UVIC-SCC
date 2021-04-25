@@ -48,7 +48,7 @@ namespace UVIC_SCC.API
                 Response emailResponse = await EmailMessageToSCC(from, subject, message);
                 if (emailResponse.IsSuccessStatusCode)
                 {
-                    responseMessage = emailResponse.Body.ToString();
+                    responseMessage = "SUCCESS";
                     return new OkObjectResult(responseMessage);
                 }
                 else
@@ -68,10 +68,10 @@ namespace UVIC_SCC.API
 
         private static async Task<Response> EmailMessageToSCC(string fromInformation, string subject, string message)
         {
-            var apiKey = Environment.GetEnvironmentVariable("APPSETTING_SENDGRID_API_KEY"); //insert your Sendgrid API Key
-            var toAddress = Environment.GetEnvironmentVariable("APPSETTING_TO_ADDRESS");
+            var apiKey = Environment.GetEnvironmentVariable("APPSETTING-SENDGRID-API-KEY"); //insert your Sendgrid API Key
+            var toAddress = Environment.GetEnvironmentVariable("APPSETTING-TO-ADDRESS");
             string toDescriptor = "UVIC SCC President";
-            var fromEmailAddress = Environment.GetEnvironmentVariable("APPSETTING_FROM_ADDRESS");
+            var fromEmailAddress = Environment.GetEnvironmentVariable("APPSETTING-FROM-ADDRESS");
             string fromDescriptor = "UVIC SCC Mail Form";
 
             var client = new SendGridClient(apiKey);

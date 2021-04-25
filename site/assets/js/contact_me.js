@@ -14,22 +14,21 @@ $(function () {
             var phone = $("input#phone").val();
             var message = $("textarea#message").val();
             var firstName = name; // For Success/Failure Message
+            var formSubject= "UVIC SCC WebSite Contact Form";
+            var submittedMessage = message + " " + email + " " + phone;
             // Check for white space in name for Success/Fail message
             if (firstName.indexOf(" ") >= 0) {
                 firstName = name.split(" ").slice(0, -1).join(" ");
             }
             $this = $("#sendMessageButton");
             $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
+            var jsonSubmitted = "{ 'from':'" + email + "', 'subject': '" + formSubject + "', 'message': '" + submittedMessage + "' }";
+            alert("Emailing...." + jsonSubmitted);
             $.ajax({
                 // The contact_me.php file was renamed in this solution to contact_me.txt for NOW as we want to find a JavaScript method for Contact Me submission
-                url: "/assets/mail/contact_me.php",
+                url: "https://uvic-scc-api.azurewebsites.net/api/Email",
                 type: "POST",
-                data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    message: message,
-                },
+                data: jsonSubmitted,
                 cache: false,
                 success: function () {
                     // Success message
