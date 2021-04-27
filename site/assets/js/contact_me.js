@@ -23,7 +23,7 @@ $(function () {
             $this = $("#sendMessageButton");
             $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
             var jsonSubmitted = "{ 'from':'" + email + "', 'subject': '" + formSubject + "', 'message': '" + submittedMessage + "' }";
-            alert("Emailing...." + jsonSubmitted);
+            /*alert("Emailing...." + jsonSubmitted);*/
             $.ajax({
                 // The contact_me.php file was renamed in this solution to contact_me.txt for NOW as we want to find a JavaScript method for Contact Me submission
                 url: "https://uvic-scc-api.azurewebsites.net/api/Email",
